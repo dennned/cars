@@ -23,8 +23,8 @@ services:
     networks:
       - mynetwork
   dbmysql:
-    image: mysql:8.0
-    command: ['--character-set-server=utf8mb4', '--collation-server=utf8mb4_unicode_ci','--default-authentication-plugin=mysql_native_password']
+    image: mysql:8.4.3
+    command: ['--character-set-server=utf8mb4', '--collation-server=utf8mb4_unicode_ci']
     restart: on-failure
     ports:
       - 33061:3306
@@ -36,7 +36,6 @@ services:
       MYSQL_DATABASE: cars
       MYSQL_ROOT_HOST: '%'
     volumes:
-      - data_mysql:/var/lib/mysql
       - ./docker-entrypoint-initdb.d:/docker-entrypoint-initdb.d
   phpmyadmin:
     depends_on:
